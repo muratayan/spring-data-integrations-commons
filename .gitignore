@@ -19,3 +19,8 @@ hs_err_pid*
 **/.recommenders
 **/.settings
 **/target
+
+# Intellij
+.idea/
+*.iml
+*.iws
