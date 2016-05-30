@@ -25,6 +25,11 @@
 
         <maven.surefire.plugin.version>2.17</maven.surefire.plugin.version>
         <maven.jacoco.plugin.version>0.7.4.201502262128</maven.jacoco.plugin.version>
+        
+        <sonar.jacoco.jar>${basedir}/lib/jacocoagent.jar</sonar.jacoco.jar>
+        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+        <sonar.language>java</sonar.language>
+        <sonar.verbose>true</sonar.verbose>
     </properties>
 
 	<dependencies>
