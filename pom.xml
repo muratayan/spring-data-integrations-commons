@@ -22,7 +22,10 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<springdata.keyvalue>1.0.1.RELEASE</springdata.keyvalue>
-	</properties>
+
+        <maven.surefire.plugin.version>2.17</maven.surefire.plugin.version>
+        <maven.jacoco.plugin.version>0.7.4.201502262128</maven.jacoco.plugin.version>
+    </properties>
 
 	<dependencies>
 
@@ -191,9 +194,38 @@
  					</execution>
  				</executions>
  			</plugin>
-
 		</plugins>
 	</build>
+
+	<profiles>
+        <profile>
+            <id>test-coverage</id>
+            <properties>
+                <argLine>
+                    -Xms128m -Xmx1G -XX:MaxPermSize=128M
+                </argLine>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <version>${maven.jacoco.plugin.version}</version>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>${maven.surefire.plugin.version}</version>
+                        <configuration combine.self="override">
+                            <redirectTestOutputToFile>true</redirectTestOutputToFile>
+                            <testFailureIgnore>true</testFailureIgnore>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 	<!-- For Spring Bundlor plugin -->
 	<pluginRepositories>
